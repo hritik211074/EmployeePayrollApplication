@@ -1,4 +1,5 @@
 package com.example.EmployeePayrollApplication.service;
+import com.example.EmployeePayrollApplication.dto.EmployeeDTO;
 import com.example.EmployeePayrollApplication.entity.Employee;
 import com.example.EmployeePayrollApplication.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,19 @@ public class EmployeeService {
         return employeeRepository.findById(id).orElse(null);
     }
 
-    public Employee addEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+    public Employee addEmployee(EmployeeDTO employeeDTO) {
+        Employee emp=new Employee();
+        emp.setName(employeeDTO.getName());
+        emp.setSalary(employeeDTO.getSalary());
+        emp.setDepartment(employeeDTO.getDepartment());
+        return employeeRepository.save(emp);
     }
-
-    public Employee updateEmployee(Long id, Employee updatedEmployee) {
+    public Employee updateEmployee(Long id, EmployeeDTO updatedEmployeeDTO) {
         Employee employee = employeeRepository.findById(id).orElse(null);
         if (employee != null) {
-            employee.setName(updatedEmployee.getName());
-            employee.setDepartment(updatedEmployee.getDepartment());
-            employee.setSalary(updatedEmployee.getSalary());
+            employee.setName(updatedEmployeeDTO.getName());
+            employee.setDepartment(updatedEmployeeDTO.getDepartment());
+            employee.setSalary(updatedEmployeeDTO.getSalary());
             return employeeRepository.save(employee);
         }
         return null;

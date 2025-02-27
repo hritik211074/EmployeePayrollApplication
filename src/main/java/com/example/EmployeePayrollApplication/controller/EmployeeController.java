@@ -1,4 +1,5 @@
 package com.example.EmployeePayrollApplication.controller;
+import com.example.EmployeePayrollApplication.dto.EmployeeDTO;
 import com.example.EmployeePayrollApplication.entity.Employee;
 import com.example.EmployeePayrollApplication.service.EmployeeService;
 import jakarta.persistence.Table;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping("/employees")
 public class EmployeeController {
 
     @Autowired
@@ -24,13 +25,13 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee addEmployee(@RequestBody Employee employee) {
-        return employeeService.addEmployee(employee);
+    public Employee addEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        return employeeService.addEmployee(employeeDTO);
     }
 
     @PutMapping("/{id}")
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-        return employeeService.updateEmployee(id, employee);
+    public Employee updateEmployee(@PathVariable Long id, @RequestBody EmployeeDTO employeeDTO) {
+        return employeeService.updateEmployee(id, employeeDTO);
     }
 
     @DeleteMapping("/{id}")
