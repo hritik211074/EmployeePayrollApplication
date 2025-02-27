@@ -1,6 +1,7 @@
 package com.example.EmployeePayrollApplication.controller;
 import com.example.EmployeePayrollApplication.entity.Employee;
 import com.example.EmployeePayrollApplication.service.EmployeeService;
+import jakarta.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
